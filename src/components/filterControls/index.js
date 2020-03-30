@@ -14,11 +14,11 @@ const FilterControls = props => {
       .then(apiGenres => {
         setGenres([genres[0], ...apiGenres]);
       });
-  }, []);
+  }, );
 
   const handleChange = (e, type, value) => {
     e.preventDefault();
-    // To be completed
+    props.onUserInput(type, value);
   };
   const handleTextChange = e => {
     handleChange(e, "name", e.target.value);
