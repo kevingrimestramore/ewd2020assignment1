@@ -2,6 +2,7 @@ import React, {useState, useEffect } from "react";
 import Header from "../components/headerMovieList";
 import MovieList from "../components/movieList";
 import FilterControls from "../components/filterControls";
+import StubAPI from "../api/stubAPI";
 
 const MovieListPage = () => {
   const [titleFilter, setTitleFilter] = useState("");
@@ -35,12 +36,25 @@ const MovieListPage = () => {
     if (type === "name") setTitleFilter(value);
     else setGenreFilter(value);
   };
-  // NEW BLOCK END
+
+  const addToFavorites = movieId => {
+    setMovies(movies => {
+      const index = movies.map(m => m.id).indexOf(movieId);
+      StubAPI.add(movies[index]);
+      let newMoviesState = [...movies]
+      newMoviesState.splice(index, 1);
+      return newMoviesState;
+    });
+  };
+
   return (
     <>
-      <Header numMovies={displayedMovies.length} />          {/* CHANGED */}
-      <FilterControls onUserInput={handleFilterChange} />    {/* CHANGED */}
-      <MovieList movies={displayedMovies} />                  {/* CHANGED */}
+      <Header numMovies={displayedMovies.length} />
+      <FilterControls onUserInput={handleFilterChange} />
+      <MovieList
+        movies={displayedMovies}
+        buttonHandler={addToFavorites}
+      />     {/* CHANGED */}
     </>
   );
 };
