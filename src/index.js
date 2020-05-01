@@ -9,7 +9,10 @@ import FavoriteMoviesPage from './pages/favoriteMoviesPage';
 import MovieReviewPage from './pages/movieReviewPage'
 import MoviesContextProvider from "./contexts/moviesContext";
 import GenresContextProvider from "./contexts/genresContext";
-import AddMovieReviewPage from './pages/addMovieReviewPage'
+import AddMovieReviewPage from './pages/addMovieReviewPage';
+import LoginPage from './pages/loginPage';
+import SignupPage from './pages/signupPage';
+import AuthContextProvider from './contexts/authContext'
 
 
 const App = () => {
@@ -20,14 +23,18 @@ const App = () => {
         <div className="container-fluid">
           <MoviesContextProvider>
           <GenresContextProvider>
+          <AuthContextProvider>
             <Switch>
               <Route exact path="/movies/favorites" component={FavoriteMoviesPage} />
               <Route path="/movies/:id" component={MoviePage} />
+              <Route exact path="/login" component={LoginPage} />
+              <Route path="/signup" component={SignupPage} /> />
               <Route path="/" component={HomePage} />
               <Route path="/reviews/:id" component={MovieReviewPage} />
               <Route exact path="/reviews/form" component={AddMovieReviewPage} />
               <Redirect from="*" to="/" />
             </Switch>
+            </AuthContextProvider>
             </GenresContextProvider>
           </MoviesContextProvider>
         </div>

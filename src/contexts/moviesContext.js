@@ -6,6 +6,7 @@ export const MoviesContext = React.createContext(null)
 
 const MoviesContextProvider = props => {
   const [movies, setMovies] = useState([]);
+  const [authenticated, setAuthenticated] = useState(false);
 
   const addToFavorites = movieId => {
     setMovies(movies => {
@@ -19,13 +20,14 @@ const MoviesContextProvider = props => {
     getMovies().then(movies => {
       setMovies(movies);
     });
-  }, []);
+  },[authenticated]);
 
   return (
     <MoviesContext.Provider
       value={{
         movies: movies,
-        addToFavorites: addToFavorites
+        addToFavorites: addToFavorites,
+        setAuthenticated: setAuthenticated
       }}
     >
       {props.children}
