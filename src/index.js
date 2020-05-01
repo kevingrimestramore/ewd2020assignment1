@@ -9,6 +9,7 @@ import FavoriteMoviesPage from './pages/favoriteMoviesPage';
 import MovieReviewPage from './pages/movieReviewPage'
 import MoviesContextProvider from "./contexts/moviesContext";
 import GenresContextProvider from "./contexts/genresContext";
+import AddMovieReviewPage from './pages/addMovieReviewPage'
 
 
 const App = () => {
@@ -24,6 +25,7 @@ const App = () => {
               <Route path="/movies/:id" component={MoviePage} />
               <Route path="/" component={HomePage} />
               <Route path="/reviews/:id" component={MovieReviewPage} />
+              <Route exact path="/reviews/form" component={AddMovieReviewPage} />
               <Redirect from="*" to="/" />
             </Switch>
             </GenresContextProvider>
