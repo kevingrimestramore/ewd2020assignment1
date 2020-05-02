@@ -4,11 +4,17 @@ import MovieDetails from "../components/movieDetails";
 import PageTemplate from "../components/templateMoviePage";
 import MovieReviews from "../components/movieReviews";
 import useMovie from "../hooks/useMovie";
+import { useAuth } from "../contexts/authContext";
+import { Redirect} from "react-router-dom";
 
 const MoviePage = props => {
   const { id } = props.match.params;
-  const [movie] = useMovie(id)  // NEW
+  const [movie] = useMovie(id);
+  const { authToken } = useAuth();
+
   return (
+    <>
+    {authToken ? (
     <>
     {movie ? (
       <>
@@ -43,7 +49,9 @@ const MoviePage = props => {
       <p>Waiting for contact details</p>
     )}
   </>
-  );
+  ) : (
+    <Redirect to="/login" />)}</>
+);
 };
 
 export default MoviePage;
