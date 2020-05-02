@@ -25,13 +25,13 @@ const App = () => {
           <GenresContextProvider>
           <AuthContextProvider>
             <Switch>
+              <Route exact path="/reviews/form" component={AddMovieReviewPage} />
               <Route exact path="/movies/favorites" component={FavoriteMoviesPage} />
               <Route path="/movies/:id" component={MoviePage} />
               <Route exact path="/login" component={LoginPage} />
               <Route path="/signup" component={SignupPage} /> />
               <Route path="/" component={HomePage} />
               <Route path="/reviews/:id" component={MovieReviewPage} />
-              <Route exact path="/reviews/form" component={AddMovieReviewPage} />
               <Redirect from="*" to="/" />
             </Switch>
             </AuthContextProvider>
