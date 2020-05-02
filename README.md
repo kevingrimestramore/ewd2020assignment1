@@ -16,6 +16,8 @@ Name: Kevin Grimes
 
 ## Setup requirements.
 
+Server application repo: https://github.com/kevingrimestramore/ewd2020assignment2
+
 . . . . Briefly state (to a third party) the setup steps necessary to run your app/client. [You need only reference the server-side repo's URL for completeness - its README will detail server-side initialization requirements.]
 
 ## Data Model Design.
