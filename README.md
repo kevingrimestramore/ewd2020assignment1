@@ -41,25 +41,15 @@ You will need to create a Movie DB account (https://www.themoviedb.org/) and acq
 TMDB_KEY=[INSERT_TMDB_KEY_HERE]
 ```
 
-## Data Model Design.
-
-[Custom app only]
- Diagram of app's data model (see example below) AND/OR a sample of the test data used (JSON or equivalent).
-
-![][model]
-
-[Movies Fan app extension only]
-Specify the additional TMDB endpoints used and show sample responses, in JSON.
-
 ## App Design.
 
-### Component catalogue.
+## Component catalogue.
 
 Screenshot of component catalogue attached, all relevent imports present, some storybook components unfinished.
 
 ![StoryBook Components](storybook.png)
 
-New Storybook Components:
+New Storybook Components (expanded in image):
 
 + Site Header
 + Review Table
@@ -68,16 +58,19 @@ New Storybook Components:
 + Enter Login Credentials
 + Create Login Credentials
 
-### Design patterns.
+## Design patterns.
 
-..... Briefly state the application of any composition design pattern (i.e. Render props, Container) in your codebase. Distinguish between those relating to the reuse of patterns already implemented in the labs (e.g. TemplateMoviePage) and new occurrences. Code excerpts art NOT necessary.
+authContext is used to pass the useAuth prop to most pages of the application in order to prevent unauthorized access and alows for the development of protected routing.
 
 ## UI Design.
+New Views:
+![Signin Page](signin.png)
+>A signin (and signup) page t allow users to input credentials for authorization.
 
-. . . . . Screenshots of app's views (see example below) with appropriate captions (For extension to the Movies Fan App, only show the new/modified views) . . . . . . . 
+![Write Review Page](writeReview.png)
+>A page which allows users to write a review for movies marked as a favourite.
 
-![][view]
->Shows detailed information on a movie. Clicking the 'Show Reviews' button will display extracts from critic reviews.
+A reviews excerpt table and a full review display is implemented into the Movie Details Page but cannot be accessed due to an issue discussed at the end of this document.
 
 ## Routing.
 + / (root path)     %  - Home page displaying movie list
