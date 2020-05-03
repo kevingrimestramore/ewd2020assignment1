@@ -11,6 +11,11 @@ import AddFavoriteButton from "../src/components/buttons/addToFavorites";
 import { MemoryRouter } from "react-router";
 import GenresContextProvider from "../src/contexts/genresContext";
 import { action } from "@storybook/addon-actions";
+import SiteHeader from "../src/components/siteHeader";
+import ReviewForm from "../src/components/reviewForm";
+import { Form, Input, Button, Logo, Card, Error } from "../src/components/loginComponents";
+import { Link, Redirect } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const sample = {
   adult: false,
@@ -152,3 +157,104 @@ storiesOf("Movie Details Page/MovieHeader", module)
     <MemoryRouter initialEntries={["/"]}>{story()}</MemoryRouter>
   ))
   .add("default", () => <MovieHeader movie={sample} />);
+
+  storiesOf("Home Page/Site Header", module).add("default", () => (
+    <nav className="navbar  navbar-light fixed-top  bg-dark ">
+      <nav className="navbar-brand text-white">
+        <Link className=" text-white" to="/">
+          TMDB Client
+        </Link>
+      </nav>
+      <FontAwesomeIcon
+        className="navbar-text text-light"
+        icon={["fas", "video"]}
+        size="3x"
+      />
+      <span className="navbar-text text-light">
+        The Dodgy Masters Student's Answer to IMDB
+      </span>
+      <FontAwesomeIcon
+        className="navbar-text text-light"
+        icon={["fas", "film"]}
+        size="3x"
+      />
+      <nav className="navbar navbar-expand ">
+        <ul className="navbar-nav">
+          <li className="nav-item">
+            <Link className="nav-link text-white" to="/">
+              Home
+            </Link>
+          </li>
+          <li className="nav-item">
+            <Link className="nav-link text-white" to="/movies/favorites">
+              Favorites
+            </Link>
+          </li>
+        </ul>
+      </nav>
+    </nav>
+  ));
+
+  storiesOf("Submit Review Page/ReviewForm", module).add("default", () => (
+    <ReviewForm />
+  ));
+
+  storiesOf("Login Page/Enter Credentials (Login)", module).add("default", () => (
+    <Card>
+      <Form>
+        <Input
+          type="username"
+          placeholder="username"
+        />
+        <Input
+          type="password"
+          placeholder="password"
+        />
+        <Button>Sign In</Button>
+      </Form>
+    </Card>
+  ));
+
+  storiesOf("Login Page/Create Credentials (Signup)", module).add("default", () => (
+    <Card>
+
+      <Form>
+        <Input type="username"
+          placeholder="username" />
+        <Input type="password"
+          placeholder="password" />
+        <Input type="password"
+          placeholder="password again" />
+        <Button >Sign Up</Button>
+      </Form>
+    </Card>
+  ));
+
+  storiesOf("Movie Details Page/Review Table", module).add("default", () => (
+    <table className="table table-striped table-bordered table-hover">
+      <thead>
+        <tr>
+          <th scope="col">Author</th>
+          <th scope="col">Excerpt</th>
+          <th scope="col">More</th>
+        </tr>
+      </thead>
+      <tbody>
+              <tr >
+                <td></td>
+                <td></td>
+                <td>
+                  {" "}
+                </td>
+              </tr>
+
+      </tbody>
+    </table>
+  ));
+
+  storiesOf("Movie Details Page/Full Review", module).add("default", () => (
+    <>
+    <p>Review By: </p>
+    <p>Content </p>
+  </>
+  ));

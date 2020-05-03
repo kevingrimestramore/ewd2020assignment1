@@ -3,22 +3,43 @@
 Name: Kevin Grimes
 
 ## Overview.
-. . . . . . A statement of the app concept and objectives. For an expansion of the Movies Fan app, only state the additional objectives  . . . . . 
+The Movies Fan app allows users to browse a database of movie releases, view details about the production of specific movies, mark favourite movies read and write reviews. Users have the ability to log in using valid credentials or register their own credentials for access. None of the app is accessible without valid authentication, which is handled using JSON Web Tokens (JWTs) in the back-end using the express API application linked below.
 
+For development purposes there are 2 hardcoded users seeded into the API from launch with username - password credentials:
 
- . . . . . List of user features. For extension to the Movies Fan app, only list new/modified features) . . . . 
- 
- + Feature 1
- + Feature 2
- + Feature 3
- + etc
- + etc
+user1 - test1 <br>
+user2 - test2
 
 ## Setup requirements.
 
-Server application repo: https://github.com/kevingrimestramore/ewd2020assignment2
+API server application repo: https://github.com/kevingrimestramore/ewd2020assignment2
 
-. . . . Briefly state (to a third party) the setup steps necessary to run your app/client. [You need only reference the server-side repo's URL for completeness - its README will detail server-side initialization requirements.]
+In order to run the application installation of Node and Node Package Manager (npm) is required (https://nodejs.org/en/download/).
+
+App was developed using:
+Node v12.14.1
+npm  v6.13.4
+
+Either download the app using the ZIP download button above and unzip the file in a location of your choice; Or to install using git, open a terminal window in the folder you would lke to install the application within and run the following command:
+
+```bat
+git clone https://github.com/kevingrimestramore/ewd2020assignment1.git
+```
+(After intialising the server application from the repo linked above by following instructions in README)
+Open a terminal window within the root directory of the application and run the following two commands in order:
+
+```bat
+npm install
+npm start
+```
+
+Once npm is initialised within the app the already populated package.json file's dependencies will be used, so no further installation should be required.
+
+You will need to create a Movie DB account (https://www.themoviedb.org/) and acquire an authentication key to access the TMDB API. Create a .env file in the source folder for the app and copy in your unique authentication key as shown below:
+
+```bat
+TMDB_KEY=[INSERT_TMDB_KEY_HERE]
+```
 
 ## Data Model Design.
 
@@ -34,9 +55,18 @@ Specify the additional TMDB endpoints used and show sample responses, in JSON.
 
 ### Component catalogue.
 
- . . . . A screenshot showing the component stories from the Storybook UI. For expansion to the Movies app, hi-light stories relating to new/modified components.
+Screenshot of component catalogue attached, all relevent imports present, some storybook components unfinished.
 
-![][stories]
+![StoryBook Components](storybook.png)
+
+New Storybook Components:
+
++ Site Header
++ Review Table
++ Full Review
++ Review Form
++ Enter Login Credentials
++ Create Login Credentials
 
 ### Design patterns.
 
@@ -50,18 +80,17 @@ Specify the additional TMDB endpoints used and show sample responses, in JSON.
 >Shows detailed information on a movie. Clicking the 'Show Reviews' button will display extracts from critic reviews.
 
 ## Routing.
-. . . . List each route supported by your app and state the associated view. For expansion of the Movies Fan app, only new routes should be listed. Hi-light any advanced routing cases, e.g. nested routes. If relevant, specify which of the routes require authentication. . . . . . 
-
-+ /foos - displays all published foos.
-+ /foos/:id - detail view of a particular foo (:id).
-+ etc.
-+ etc.
-
-## Independent learning.
-
-. . . . . State the aspects of your app codebase that required independent learning/research on your behalf. Mention the technology/technique used and include source references. (See the assignment specification for examples.) 
++ / (root path)     %  - Home page displaying movie list
++ /login               - Allow a user to enter login credentials for authentication
++ /signup              - Allow a user to create login credentials for authentication
++ /movies/:id       %  - Detailed view of specific movie by id with option to expand table showing review excerpts
++ /:id/reviews      %  - Shortlist view of reviews for movie by id
++ /reviews/form     %  - Form to add a review for a movie
++ /movies/favorites %  - List of a users selected favourite movies
 
 
-[model]: ./data.jpg
-[view]: ./view.png
-[stories]: ./storybook.png
+NOTE: % indicates routes which are protected and require authentication. Attempting to access these routes without a valid JSON Web Token will result in the user being redirected to the login page where they can  create or use existing login credentials to gain access.
+
+## Known issues.
++ When viewing the details of a specific movie (/movies/:id) and clicking the "show reviews" button, the route is changed (/:id/reviews) and the table outline is displayed, but no review data is received to be displayed. This indicates an issue between movieDetailsPage and the movieReviews component. Attempted to resolve but couldn't find a solution. This error prevents access to the controls to view the full reviews for a movie although the logic to display the full review page is implemented.
++ Certain movies when selected from the home page display an error and prevent the page from rendering. Seems to be an error with the movieDetailsPage. At the time of writing, Scary Movie 6 - ID: 668203 (When application is running - http://localhost:3000/movies/668203) presents this issue.

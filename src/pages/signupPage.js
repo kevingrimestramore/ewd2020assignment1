@@ -2,11 +2,10 @@ import React, { useState} from "react";
 import { Link, Redirect } from "react-router-dom";
 import * as api from '../api/tmdb-api';
 import { Card,  Form, Input, Button, } from "../components/loginComponents";
-import { useAuth } from "../contexts/authContext";
 
 function Signup() {
   //const [isLoggedIn, setLoggedIn] = useState(false);
-  const [isError, setIsError] = useState(false);
+  const [setIsError] = useState(false);
   const [registered, setRegistered] = useState(false);
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
