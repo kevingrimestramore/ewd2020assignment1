@@ -63,7 +63,7 @@ New Storybook Components (expanded in image):
 authContext is used to pass the useAuth prop to most pages of the application in order to prevent unauthorized access and alows for the development of protected routing.
 
 ## UI Design.
-New Views:
+New Views: <br>
 ![Signin Page](signin.png)
 >A signin (and signup) page t allow users to input credentials for authorization.
 
