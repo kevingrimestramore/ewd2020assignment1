@@ -13,6 +13,7 @@ import AddMovieReviewPage from './pages/addMovieReviewPage';
 import LoginPage from './pages/loginPage';
 import SignupPage from './pages/signupPage';
 import AuthContextProvider from './contexts/authContext'
+import MyReviewsPage from "./pages/myReviewsPage";
 
 
 const App = () => {
@@ -32,6 +33,7 @@ const App = () => {
               <Route exact path="/login" component={LoginPage} />
               <Route path="/signup" component={SignupPage} /> />
               <Route path="/" component={HomePage} />
+              <Route path="/movies/myreviews" component={MyReviewsPage} />
               <Redirect from="*" to="/" />
             </Switch>
             </AuthContextProvider>

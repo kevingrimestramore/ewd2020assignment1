@@ -158,103 +158,135 @@ storiesOf("Movie Details Page/MovieHeader", module)
   ))
   .add("default", () => <MovieHeader movie={sample} />);
 
-  storiesOf("Home Page/Site Header", module).add("default", () => (
-    <nav className="navbar  navbar-light fixed-top  bg-dark ">
-      <nav className="navbar-brand text-white">
-        <Link className=" text-white" to="/">
-          TMDB Client
+storiesOf("Home Page/Site Header", module).add("default", () => (
+  <nav className="navbar  navbar-light fixed-top  bg-dark ">
+    <nav className="navbar-brand text-white">
+      <Link className=" text-white" to="/">
+        TMDB Client
         </Link>
-      </nav>
-      <FontAwesomeIcon
-        className="navbar-text text-light"
-        icon={["fas", "video"]}
-        size="3x"
-      />
-      <span className="navbar-text text-light">
-        The Dodgy Masters Student's Answer to IMDB
-      </span>
-      <FontAwesomeIcon
-        className="navbar-text text-light"
-        icon={["fas", "film"]}
-        size="3x"
-      />
-      <nav className="navbar navbar-expand ">
-        <ul className="navbar-nav">
-          <li className="nav-item">
-            <Link className="nav-link text-white" to="/">
-              Home
-            </Link>
-          </li>
-          <li className="nav-item">
-            <Link className="nav-link text-white" to="/movies/favorites">
-              Favorites
-            </Link>
-          </li>
-        </ul>
-      </nav>
     </nav>
-  ));
+    <FontAwesomeIcon
+      className="navbar-text text-light"
+      icon={["fas", "video"]}
+      size="3x"
+    />
+    <span className="navbar-text text-light">
+      The Dodgy Masters Student's Answer to IMDB
+      </span>
+    <FontAwesomeIcon
+      className="navbar-text text-light"
+      icon={["fas", "film"]}
+      size="3x"
+    />
+    <nav className="navbar navbar-expand ">
+      <ul className="navbar-nav">
+        <li className="nav-item">
+          <Link className="nav-link text-white" to="/">
+            Home
+            </Link>
+        </li>
+        <li className="nav-item">
+          <Link className="nav-link text-white" to="/movies/favorites">
+            Favorites
+            </Link>
+        </li>
+      </ul>
+    </nav>
+  </nav>
+));
 
-  storiesOf("Submit Review Page/ReviewForm", module).add("default", () => (
-    <ReviewForm />
-  ));
+storiesOf("Submit Review Page/ReviewForm", module).add("default", () => (
+  <ReviewForm />
+));
 
-  storiesOf("Login Page/Enter Credentials (Login)", module).add("default", () => (
-    <Card>
-      <Form>
-        <Input
-          type="username"
-          placeholder="username"
-        />
-        <Input
-          type="password"
-          placeholder="password"
-        />
-        <Button>Sign In</Button>
-      </Form>
-    </Card>
-  ));
+storiesOf("Login Page/Enter Credentials (Login)", module).add("default", () => (
+  <Card>
+    <Form>
+      <Input
+        type="username"
+        placeholder="username"
+      />
+      <Input
+        type="password"
+        placeholder="password"
+      />
+      <Button>Sign In</Button>
+    </Form>
+  </Card>
+));
 
-  storiesOf("Login Page/Create Credentials (Signup)", module).add("default", () => (
-    <Card>
+storiesOf("Login Page/Create Credentials (Signup)", module).add("default", () => (
+  <Card>
 
-      <Form>
-        <Input type="username"
-          placeholder="username" />
-        <Input type="password"
-          placeholder="password" />
-        <Input type="password"
-          placeholder="password again" />
-        <Button >Sign Up</Button>
-      </Form>
-    </Card>
-  ));
+    <Form>
+      <Input type="username"
+        placeholder="username" />
+      <Input type="password"
+        placeholder="password" />
+      <Input type="password"
+        placeholder="password again" />
+      <Button >Sign Up</Button>
+    </Form>
+  </Card>
+));
 
-  storiesOf("Movie Details Page/Review Table", module).add("default", () => (
-    <table className="table table-striped table-bordered table-hover">
-      <thead>
-        <tr>
-          <th scope="col">Author</th>
-          <th scope="col">Excerpt</th>
-          <th scope="col">More</th>
-        </tr>
-      </thead>
-      <tbody>
-              <tr >
-                <td></td>
-                <td></td>
-                <td>
-                  {" "}
-                </td>
-              </tr>
+storiesOf("Movie Details Page/Review Table", module).add("default", () => (
+  <table className="table table-striped table-bordered table-hover">
+    <thead>
+      <tr>
+        <th scope="col">Author</th>
+        <th scope="col">Excerpt</th>
+        <th scope="col">More</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr >
+        <td></td>
+        <td></td>
+        <td>
+          {" "}
+        </td>
+      </tr>
 
-      </tbody>
-    </table>
-  ));
+    </tbody>
+  </table>
+));
 
-  storiesOf("Movie Details Page/Full Review", module).add("default", () => (
-    <>
+storiesOf("Movie Details Page/Full Review", module).add("default", () => (
+  <>
     <p>Review By: </p>
     <p>Content </p>
   </>
-  ));
+));
+
+storiesOf("Submit Review Page/My Reviews Table", module).add("default", () => (
+  <table className="table table-striped table-bordered table-hover">
+      <thead>
+        <tr>
+          <th scope="col">Movie Title</th>
+          <th scope="col">Review</th>
+          <th scope="col">Delete?</th>
+        </tr>
+      </thead>
+      <tbody>
+              <tr>
+                <td>Title of Movie Placeholder</td>
+                <td>Review Content Placeholder</td>
+                <td>
+                  {" "}
+                  <button
+      type="button"
+      className="btn w-100 btn-primary"
+      onClick={deleteReview}
+    >
+      Delete This Review
+    </button>
+                </td>
+              </tr>
+            );
+          })}
+      </tbody>
+    </table>
+            ) : (
+              <Redirect to="/login" />)}</>
+));

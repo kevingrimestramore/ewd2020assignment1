@@ -1,13 +1,13 @@
 import React from "react";
 import "./reviewForm.css";
 import useForm from "react-hook-form";
-import stubAPI from "../../api/stubAPI";
+import {addReview} from "../../api/tmdb-api";
 
 const ReviewForm = ({ movie }) => {
   const { register, handleSubmit, errors, reset } = useForm();
   const onSubmit = data => {
     data.movieId = movie.id;
-    stubAPI.addReview(data);
+    addReview(data);
     console.log(data);
     reset({
       author: "",
@@ -51,7 +51,7 @@ const ReviewForm = ({ movie }) => {
       <button
         type="reset"
         className="btn btn-primary reset"
-        onClick={() => {
+        onClick={(addReview) => {
           reset({
             author: "",
             content: ""

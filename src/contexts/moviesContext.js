@@ -1,17 +1,19 @@
 import React, { useState, useEffect } from "react";
-import StubAPI from "../api/stubAPI";
-import { getMovies } from "../api/tmdb-api";
+import {addFavorite, getMovies, getFavorites, addReview, deleteReview} from "../api/tmdb-api";
 
 export const MoviesContext = React.createContext(null)
 
 const MoviesContextProvider = props => {
   const [movies, setMovies] = useState([]);
+  const [favMovies, setFavMovies] = useState([]);
+  const [addReview, deleteReview] = useState([]);
   const [authenticated, setAuthenticated] = useState(false);
 
-  const addToFavorites = movieId => {
+  const addToFavorites = (movieId, user) => {
     setMovies(movies => {
       const index = movies.map(m => m.id).indexOf(movieId);
-      StubAPI.add(movies[index]);
+      addFavorite(movies[index], user);
+      favMovies.push(movies[index])
       movies.splice(index, 1);
       return [...movies];
     });
@@ -22,16 +24,35 @@ const MoviesContextProvider = props => {
     });
   },[authenticated]);
 
-  return (
-    <MoviesContext.Provider
-      value={{
-        movies: movies,
-        addToFavorites: addToFavorites,
-        setAuthenticated: setAuthenticated
-      }}
-    >
-      {props.children}
-    </MoviesContext.Provider>
+  // 
+  /*
+  getFavorites(localStorage.getItem("user")).then(favMovies => {
+    console.log("Favorite movies" + favMovies)
+    setFavMovies(favMovies);
+    favMovies.forEach(favMovie => {
+      const index = movies.map(m => m.id).indexOf(favMovie.id);
+      movies.splice(index, 1);
+    })
+    setMovies([...movies])
+  })
+
+})
+}, [authenticated]);
+*/
+
+  return (<MoviesContext.Provider value = {
+      {
+        movies,
+        favMovies,
+        addToFavorites,
+        setAuthenticated,
+        addReview,
+        deleteReview
+      }
+    }>
+    {
+      props.children
+    } </MoviesContext.Provider>
   );
 };
 
